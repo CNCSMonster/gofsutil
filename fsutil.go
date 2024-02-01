@@ -18,3 +18,11 @@ func MustWrite(path string, content []byte) error {
 	}
 	return os.WriteFile(path, content, os.ModePerm)
 }
+
+func IsExist(path string) bool {
+	_, err := os.Stat(path)
+	if err != nil && os.IsNotExist(err) {
+		return false
+	}
+	return true
+}
